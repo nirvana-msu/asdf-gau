@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source "$(dirname "$0")/util.sh"
+
+queryReleases | grep \"browser_download_url\" | grep -oP "[^_]*(?=_$(getPlatform))" | tac | tr '\n' ' '
