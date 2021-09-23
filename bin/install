@@ -9,7 +9,7 @@ if [[ "${ASDF_INSTALL_TYPE}" != "version" ]]; then
     exit 1
 fi
 
-download_url=$(queryReleaseTag | grep \"browser_download_url\".*$(getPlatform) | grep -oE "[^\"]*${ASDF_INSTALL_VERSION}[^\"]*")
+download_url=$(queryReleaseTag | grep \"browser_download_url\".*$(getPlatform) | grep -oE "[^\"]*/download/v${ASDF_INSTALL_VERSION}/[^\"]*")
 
 WIN=( "msys" "cygwin" "win32" )
 if [[ " ${WIN[@]} " =~ " $OSTYPE " ]]; then

@@ -38,7 +38,7 @@ queryLatestReleases() {
 }
 
 queryReleaseTag() {
-    releases_path=https://api.github.com/repos/lc/gau/releases/tags/${ASDF_INSTALL_VERSION}
+    releases_path=https://api.github.com/repos/lc/gau/releases/tags/v${ASDF_INSTALL_VERSION}
     cmd="curl -sS"
     if [[ -n "${GITHUB_API_TOKEN}" ]]; then
         cmd="${cmd} -H 'Authorization: token ${GITHUB_API_TOKEN}'"
