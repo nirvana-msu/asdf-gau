@@ -28,8 +28,17 @@ getPlatform() {
     echo "$(getOs)_${arch}"
 }
 
-queryReleases() {
+queryLatestReleases() {
     releases_path=https://api.github.com/repos/lc/gau/releases
+    cmd="curl -sS"
+    if [[ -n "${GITHUB_API_TOKEN}" ]]; then
+        cmd="${cmd} -H 'Authorization: token ${GITHUB_API_TOKEN}'"
+    fi
+    eval "${cmd} ${releases_path}"
+}
+
+queryReleaseTag() {
+    releases_path=https://api.github.com/repos/lc/gau/releases/tags/${ASDF_INSTALL_VERSION}
     cmd="curl -sS"
     if [[ -n "${GITHUB_API_TOKEN}" ]]; then
         cmd="${cmd} -H 'Authorization: token ${GITHUB_API_TOKEN}'"
